@@ -10,20 +10,22 @@ source:
   sha256: "d43fb8e92e64e1cabbdb93b4f213b95145db0e843371239b3a8bf91dbdf65159"
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv "
 
 requirements:
   host:
     - pip
-    - python
+    - python {{ python_min }}
   run:
     - ipython
     - jsonschema
-    - python
+    - python >={{ python_min }}
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - vdom
 
